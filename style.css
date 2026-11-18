@@ -226,121 +226,95 @@ button {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
 }
 
-.color-card:hover {
-    transform: translateY(-7px) scale(1.03);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.13);
-    border-color: #d4a017;
+
+/* ===== GonyMan Color Design ===== */
+
+.color-card {
+    border: 2px solid rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
-.color-card img {
-    width: 100%;
-    max-width: 150px;
-    height: 130px;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto 12px;
+.color-card p {
+    color: #292929;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 12px 0 0;
 }
 
-.color-card h3 {
-    font-size: 17px;
-    color: #333333;
-    margin: 8px 0 0;
-}
-
-/* Responsive */
-
-@media (max-width: 768px) {
-    #colorsContainer {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-    }
-}
-
-@media (max-width: 400px) {
-    #colorsContainer {
-        gap: 10px;
-    }
-
-    .color-card {
-        padding: 12px;
-    }
-}
-
-const colorsContainer = document.getElementById("colorsContainer");
-
-if (colorsContainer) {
-    colorsContainer.addEventListener("click", function (event) {
-
-        const card = event.target.closest(".color-card");
-
-        if (!card || !colorsContainer.contains(card)) {
-            return;
-        }
-
-        // حذف انتخاب قبلی
-        const oldSelected = colorsContainer.querySelector(".selected");
-
-        if (oldSelected) {
-            oldSelected.classList.remove("selected");
-        }
-
-        // انتخاب رنگ جدید
-        card.classList.add("selected");
-
-        // ذخیره رنگ انتخاب‌شده
-        const selectedColor = card.dataset.color;
-
-        console.log("رنگ انتخاب‌شده:", selectedColor);
-
-    });
-}
-
-/* Color card backgrounds */
+/* رنگ اختصاصی کارت‌ها */
 
 .color-card[data-color="قرمز"] {
-    background: #ffebeb;
+    background: #ffb3b3;
 }
 
 .color-card[data-color="آبی"] {
-    background: #e8f1ff;
+    background: #99ccff;
 }
 
 .color-card[data-color="سبز"] {
-    background: #e8f8ec;
+    background: #99e6a8;
 }
 
 .color-card[data-color="زرد"] {
-    background: #fff9d9;
+    background: #ffe680;
 }
 
 .color-card[data-color="نارنجی"] {
-    background: #fff0df;
+    background: #ffc080;
 }
 
 .color-card[data-color="بنفش"] {
-    background: #f2eaff;
+    background: #d9b3ff;
 }
 
 .color-card[data-color="صورتی"] {
-    background: #ffeaf3;
+    background: #ffb3d9;
 }
 
 .color-card[data-color="قهوه‌ای"] {
-    background: #eee0d3;
+    background: #c69c78;
 }
 
 .color-card[data-color="مشکی"] {
-    background: #dedede;
+    background: #777777;
 }
 
 .color-card[data-color="سفید"] {
-    background: #ffffff;
+    background: #f5f5f5;
 }
 
 .color-card[data-color="فیروزه‌ای"] {
-    background: #ddf8f5;
+    background: #80e6dc;
 }
 
 .color-card[data-color="طلایی"] {
-    background: #fff0bd;
+    background: #ffd54f;
+}
+
+/* افکت حرکت موس */
+
+.color-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* کارت انتخاب شده */
+
+.color-card.selected {
+    border: 3px solid #b8860b;
+    box-shadow: 0 10px 25px rgba(184, 134, 11, 0.3);
+    transform: translateY(-5px);
+}
+
+.color-card.selected::after {
+    content: "✓ انتخاب شد";
+    display: block;
+    margin-top: 12px;
+    color: #176b39;
+    font-weight: bold;
 }

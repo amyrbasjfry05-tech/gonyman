@@ -1,81 +1,108 @@
 
-/* تنظیمات پایه */
+/* ============================= */
+/* تنظیمات عمومی */
+/* ============================= */
+
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
     direction: rtl;
+    font-family: Tahoma, Arial, sans-serif;
     background: #101713;
-    color: #fff;
-    min-height: 100vh;
+    color: #f1f5f1;
+    text-align: center;
 }
 
-/* هدر سایت */
+button {
+    font-family: inherit;
+}
+
+/* ============================= */
+/* سربرگ سایت */
+/* ============================= */
+
 header {
-    padding: 22px 8%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #29382e;
+    padding: 25px 15px;
+    text-align: center;
 }
 
 .logo {
-    direction: ltr;
-    font-size: 25px;
-    font-weight: bold;
-    color: #fff;
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #ffffff;
 }
 
 .logo span {
-    color: #8dbb76;
+    color: #83c77d;
 }
 
 .system-name {
-    color: #aab8ac;
-    font-size: 13px;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #c2d4c0;
 }
 
+/* ============================= */
 /* محتوای اصلی */
+/* ============================= */
+
 .container {
     width: 90%;
     max-width: 750px;
-    margin: 80px auto;
-    text-align: center;
+    margin: 25px auto;
+    padding: 30px;
+    background: #1b2820;
+    border: 1px solid #344b39;
+    border-radius: 24px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
 }
+
+/* ============================= */
+/* برچسب بالای صفحه */
+/* ============================= */
 
 .badge {
     display: inline-block;
     padding: 9px 18px;
-    background: #1b3022;
-    color: #a9d38e;
-    border: 1px solid #35553d;
     border-radius: 30px;
-    font-size: 12px;
+    background: #294d31;
+    color: #b8e8b5;
+    font-size: 13px;
+    margin-bottom: 20px;
 }
 
+/* ============================= */
+/* عنوان و توضیحات */
+/* ============================= */
+
 h1 {
-    margin-top: 30px;
-    font-size: 30px;
+    font-size: 28px;
+    color: #e5f4e3;
+    line-height: 1.8;
 }
 
 .description {
-    color: #aab5ac;
-    margin-top: 18px;
+    color: #bdcdbd;
+    font-size: 15px;
     line-height: 2;
+    margin: 15px 0 25px;
 }
 
-/* کادر سؤال */
+/* ============================= */
+/* باکس سؤال */
+/* ============================= */
+
 .question-box {
-    background: #19221c;
-    border: 1px solid #354638;
-    border-radius: 15px;
-    padding: 40px 20px;
-    margin-top: 45px;
-    overflow: visible;
+    background: #26392c;
+    border: 1px solid #405b45;
+    border-radius: 20px;
+    padding: 25px 20px;
+    margin-top: 25px;
 }
 
 .question-box h2 {
@@ -85,64 +112,71 @@ h1 {
     color: #e1eadf;
     letter-spacing: -1px;
     line-height: 1.8;
-    margin-bottom: 35px;
 }
 
-/* دکمه‌ها */
+/* ============================= */
+/* دکمه های بله و خیر */
+/* ============================= */
+
 .buttons {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    min-height: 70px;
-    position: relative;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 25px;
 }
 
-button {
-    padding: 15px 35px;
+.buttons button {
+    padding: 14px 28px;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: bold;
     cursor: pointer;
-    font-family: inherit;
-    font-size: 16px;
     transition: all 0.3s ease;
-    position: relative;
 }
 
 #yesBtn {
     background: #568c53;
     color: white;
-    z-index: 2;
-    transform-origin: center;
 }
 
 #yesBtn:hover {
-    background: #6ba966;
+    background: #6ba968;
+    transform: translateY(-3px);
 }
 
 #noBtn {
     background: #873f3f;
     color: white;
-    z-index: 3;
+    transition: all 0.35s ease;
 }
 
 #noBtn:hover {
-    background: #a34d4d;
+    background: #a84e4e;
 }
 
-/* پیام‌های طنز */
+/* انیمیشن دکمه بله */
+
+.yes-final {
+    z-index: 9999;
+    position: fixed;
+}
+
+/* ============================= */
+/* پیام های طنز دکمه خیر */
+/* ============================= */
+
 #funMessage {
-    color: #d8e8d2;
-    font-size: 17px;
+    color: #f0c674;
     font-weight: bold;
-    margin-top: 30px;
-    line-height: 2;
-    animation: messageAppear 0.35s ease;
-    position: relative;
-    z-index: 1;
+    font-size: 17px;
+    margin-top: 20px;
+    animation: fadeIn 0.4s ease;
 }
 
-@keyframes messageAppear {
+@keyframes fadeIn {
     from {
         opacity: 0;
         transform: translateY(10px);
@@ -154,172 +188,36 @@ button {
     }
 }
 
-/* دکمه بله در حالت نهایی */
-#yesBtn.yes-final {
-    position: fixed;
-    z-index: 9999;
-    border-radius: 0;
-    transition: all 0.5s ease;
-}
+/* ============================= */
+/* بخش تشکر */
+/* ============================= */
 
-/* متن پایین */
-.footer-note {
-    margin-top: 70px;
-    color: #657168;
-    font-size: 11px;
-}
-
-/* نمایش در موبایل */
-@media (max-width: 600px) {
-    header {
-        padding: 18px 5%;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .container {
-        margin: 55px auto;
-    }
-
-    h1 {
-        font-size: 23px;
-    }
-
-    .question-box {
-        padding: 30px 15px;
-    }
-
-    .question-box h2 {
-        font-size: 23px;
-    }
-
-    button {
-        padding: 13px 23px;
-        font-size: 14px;
-    }
-
-    #funMessage {
-        font-size: 15px;
-    }
-}
-
-/* ===== GonyMan Color Cards ===== */
-
-#colorsContainer {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 22px;
-    width: 100%;
-    max-width: 1000px;
-    margin: 35px auto;
-    padding: 10px;
-}
-
-.color-card {
-    background: #ffffff;
-    border: 2px solid #eeeeee;
-    border-radius: 18px;
+.thanks-box {
+    margin: 20px auto 30px;
     padding: 18px;
+    max-width: 500px;
     text-align: center;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+    background: #fff3e0;
+    border: 2px solid #ffcc80;
+    border-radius: 18px;
+    color: #68421c;
+    line-height: 2;
 }
 
-
-/* ===== GonyMan Color Design ===== */
-
-.color-card {
-    border: 2px solid rgba(0, 0, 0, 0.08);
-    border-radius: 20px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-}
-
-.color-card p {
-    color: #292929;
+.thanks-box strong {
+    color: #d97706;
     font-size: 18px;
-    font-weight: bold;
-    margin: 12px 0 0;
 }
 
-/* رنگ اختصاصی کارت‌ها */
-
-.color-card[data-color="قرمز"] {
-    background: #ffb3b3;
-}
-
-.color-card[data-color="آبی"] {
-    background: #99ccff;
-}
-
-.color-card[data-color="سبز"] {
-    background: #99e6a8;
-}
-
-.color-card[data-color="زرد"] {
-    background: #ffe680;
-}
-
-.color-card[data-color="نارنجی"] {
-    background: #ffc080;
-}
-
-.color-card[data-color="بنفش"] {
-    background: #d9b3ff;
-}
-
-.color-card[data-color="صورتی"] {
-    background: #ffb3d9;
-}
-
-.color-card[data-color="قهوه‌ای"] {
-    background: #c69c78;
-}
-
-.color-card[data-color="مشکی"] {
-    background: #777777;
-}
-
-.color-card[data-color="سفید"] {
-    background: #f5f5f5;
-}
-
-.color-card[data-color="فیروزه‌ای"] {
-    background: #80e6dc;
-}
-
-.color-card[data-color="طلایی"] {
-    background: #ffd54f;
-}
-
-/* افکت حرکت موس */
-
-.color-card:hover {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-}
-
-/* کارت انتخاب شده */
-
-.color-card.selected {
-    border: 3px solid #b8860b;
-    box-shadow: 0 10px 25px rgba(184, 134, 11, 0.3);
-    transform: translateY(-5px);
-}
-
-.color-card.selected::after {
-    content: "✓ انتخاب شد";
-    display: block;
-    margin-top: 12px;
-    color: #176b39;
+.thanks-box a {
+    color: #b45309;
+    text-decoration: none;
     font-weight: bold;
 }
 
-/* ===== GonyMan Sack Images ===== */
+/* ============================= */
+/* کارت های انتخاب رنگ */
+/* ============================= */
 
 .colors-container {
     display: grid;
@@ -329,25 +227,29 @@ button {
 }
 
 .color-card {
+    position: relative;
     overflow: hidden;
     border-radius: 18px;
     padding: 15px;
     cursor: pointer;
     text-align: center;
-    transition: all 0.3s ease;
+    background: #ffffff;
     border: 2px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
 }
 
 .color-card img {
     width: 100%;
-    height: 160px;
+    height: 130px;
+    max-width: 150px;
     object-fit: contain;
     display: block;
+    margin: 0 auto;
     border-radius: 12px;
 }
 
 .color-card p {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     margin: 12px 0 0;
     color: #292929;
@@ -358,25 +260,96 @@ button {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* نمایش بهتر در موبایل */
+/* رنگ پس زمینه کارت ها */
 
-@media (max-width: 700px) {
-    .colors-container {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-    }
-
-    .color-card img {
-        height: 120px;
-    }
+.color-card[data-color="قرمز"] {
+    background: #ffcccc;
 }
 
+.color-card[data-color="آبی"] {
+    background: #cce5ff;
+}
+
+.color-card[data-color="سبز"] {
+    background: #ccffcc;
+}
+
+.color-card[data-color="زرد"] {
+    background: #fff2b3;
+}
+
+.color-card[data-color="نارنجی"] {
+    background: #ffdab3;
+}
+
+.color-card[data-color="بنفش"] {
+    background: #e6ccff;
+}
+
+.color-card[data-color="صورتی"] {
+    background: #ffcce0;
+}
+
+.color-card[data-color="قهوه‌ای"] {
+    background: #d9b99b;
+}
+
+.color-card[data-color="مشکی"] {
+    background: #bdbdbd;
+}
+
+.color-card[data-color="سفید"] {
+    background: #f5f5f5;
+}
+
+.color-card[data-color="فیروزه‌ای"] {
+    background: #b3f0e8;
+}
+
+.color-card[data-color="طلایی"] {
+    background: #ffe082;
+}
+
+/* ============================= */
+/* وضعیت رنگ انتخاب شده */
+/* ============================= */
 
 .color-card.selected {
-    border: 4px solid #b8860b !important;
+    border: 3px solid #b8860b !important;
+    background: #fff9e8;
     box-shadow: 0 0 20px rgba(184, 134, 11, 0.5);
     transform: translateY(-6px);
 }
+
+.color-card.selected p {
+    color: #8b6508;
+    font-weight: 900;
+}
+
+.color-card.selected::after {
+    content: "✓ انتخاب شد";
+    display: block;
+    margin-top: 8px;
+    color: #8b6508;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* ============================= */
+/* پیام انتخاب رنگ */
+/* ============================= */
+
+#selectedColorMessage {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 25px;
+    font-size: 16px;
+}
+
+/* ============================= */
+/* دکمه ثبت درخواست */
+/* ============================= */
+
 .submit-btn {
     display: block;
     margin: 30px auto 10px;
@@ -388,7 +361,7 @@ button {
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
 .submit-btn:hover {
@@ -401,4 +374,105 @@ button {
     font-weight: bold;
     font-size: 17px;
     margin-top: 20px;
+}
+
+/* ============================= */
+/* پایین صفحه */
+/* ============================= */
+
+.footer-note {
+    color: #829483;
+    font-size: 12px;
+    margin-top: 35px;
+}
+
+/* ============================= */
+/* نمایش در موبایل */
+/* ============================= */
+
+@media (max-width: 700px) {
+
+    .container {
+        width: 96%;
+        padding: 15px 10px;
+        margin: 15px auto;
+        border-radius: 16px;
+    }
+
+    .logo {
+        font-size: 30px;
+    }
+
+    .system-name {
+        font-size: 13px;
+    }
+
+    h1 {
+        font-size: 21px;
+    }
+
+    .description {
+        font-size: 13px;
+    }
+
+    .question-box {
+        padding: 15px 8px;
+    }
+
+    .question-box h2 {
+        font-size: 22px;
+    }
+
+    .buttons {
+        gap: 10px;
+    }
+
+    .buttons button {
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+
+    /* شش ستون و دو ردیف در موبایل */
+
+    .colors-container {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 5px;
+    }
+
+    .color-card {
+        padding: 4px 2px;
+        border-radius: 9px;
+    }
+
+    .color-card img {
+        width: 100%;
+        height: 55px;
+        object-fit: contain;
+    }
+
+    .color-card p {
+        font-size: 10px;
+        margin-top: 5px;
+        overflow-wrap: anywhere;
+    }
+
+    .color-card.selected {
+        border-width: 2px !important;
+        transform: translateY(-3px);
+    }
+
+    .color-card.selected::after {
+        font-size: 8px;
+        margin-top: 4px;
+    }
+
+    .thanks-box {
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    .submit-btn {
+        padding: 12px 35px;
+        font-size: 16px;
+    }
 }

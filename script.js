@@ -112,20 +112,17 @@ yesBtn.addEventListener("click", function () {
 // انتخاب رنگ گونی
 // =================================
 
+
 const colorCards = document.querySelectorAll(".color-card");
 
-const colorsContainer = document.getElementById("colorsContainer");
-
-// ساخت پیام رنگ انتخابی
 const selectedMessage = document.createElement("p");
 
 selectedMessage.id = "selectedColorMessage";
 selectedMessage.textContent = "هنوز رنگی انتخاب نکردی!";
 
-colorsContainer.insertAdjacentElement("afterend", selectedMessage);
+document.getElementById("colorsContainer")
+    .insertAdjacentElement("afterend", selectedMessage);
 
-
-// کلیک روی کارت های رنگ
 colorCards.forEach(card => {
 
     card.addEventListener("click", function () {
@@ -138,12 +135,16 @@ colorCards.forEach(card => {
         // انتخاب کارت جدید
         this.classList.add("selected");
 
-        // ذخیره رنگ انتخابی
+        // ذخیره رنگ
         selectedColor = this.dataset.color;
 
-        // نمایش رنگ انتخابی
+        // نمایش پیام
         selectedMessage.textContent =
             "رنگ انتخابی شما: " + selectedColor;
+
+        selectedMessage.style.color = "#176b39";
+        selectedMessage.style.fontWeight = "bold";
+        selectedMessage.style.textAlign = "center";
 
     });
 

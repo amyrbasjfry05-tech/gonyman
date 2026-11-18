@@ -5,12 +5,14 @@ const noBtn = document.getElementById("noBtn");
 let noCount = 0;
 
 const messages = [
+   const messages = [
     "مطمئنی؟",
-    "منکه میدونم!",
+    "منکه می‌دونم!",
     "جاویدنام به نظر میای",
-    "سابقه جاویدنامیت چیز دیگه ای میگه
+    "سابقه جاویدنامیت چیز دیگه‌ای میگه",
     "اون یکی داشاق و بزن",
     "حالا گی بخور"
+];
 ];
 
 noBtn.addEventListener("click", function () {

@@ -1,9 +1,19 @@
 
+// ========================================
+// GONYMAN - MAIN JAVASCRIPT
+// ========================================
+
+
+// دکمه های صفحه اول
+
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 
 let noCount = 0;
 let selectedColor = null;
+
+
+// پیام های طنز دکمه خیر
 
 const messages = [
     "مطمئنی؟",
@@ -14,7 +24,11 @@ const messages = [
     "حالا گی بخور"
 ];
 
+
+// ========================================
 // دکمه خیر
+// ========================================
+
 noBtn.addEventListener("click", function () {
 
     noCount++;
@@ -26,21 +40,34 @@ noBtn.addEventListener("click", function () {
     }
 
     const message = document.createElement("p");
-    message.id = "funMessage";
-    message.textContent = messages[Math.min(noCount - 1, messages.length - 1)];
 
-    document.querySelector("#page1 .question-box").appendChild(message);
+    message.id = "funMessage";
+
+    message.textContent =
+        messages[Math.min(noCount - 1, messages.length - 1)];
+
+    document.querySelector("#page1 .question-box")
+        .appendChild(message);
+
 
     // کوچک شدن دکمه خیر
+
     const size = Math.max(0.05, 1 - noCount * 0.16);
 
     noBtn.style.transform = `scale(${size})`;
-    noBtn.style.opacity = Math.max(0.05, 1 - noCount * 0.15);
+
+    noBtn.style.opacity =
+        Math.max(0.05, 1 - noCount * 0.15);
+
 
     // بزرگ شدن دکمه بله
-    yesBtn.style.transform = `scale(${Math.min(1 + noCount * 0.1, 1.5)})`;
+
+    yesBtn.style.transform =
+        `scale(${Math.min(1 + noCount * 0.1, 1.5)})`;
+
 
     // موقعیت های دکمه خیر
+
     const positions = [
         { left: "5%", top: "10%" },
         { left: "75%", top: "15%" },
@@ -50,55 +77,75 @@ noBtn.addEventListener("click", function () {
         { left: "50%", top: "90%" }
     ];
 
-    const position = positions[(noCount - 1) % positions.length];
+    const position =
+        positions[(noCount - 1) % positions.length];
 
     noBtn.style.position = "fixed";
     noBtn.style.left = position.left;
     noBtn.style.top = position.top;
     noBtn.style.zIndex = "1000";
 
+
     // ناپدید شدن دکمه خیر
+
     if (noCount >= 7) {
         noBtn.style.display = "none";
     }
+
 });
 
 
+// ========================================
 // دکمه بله
+// ========================================
+
 yesBtn.addEventListener("click", function () {
 
     const rect = yesBtn.getBoundingClientRect();
 
     yesBtn.style.position = "fixed";
+
     yesBtn.style.left = rect.left + "px";
     yesBtn.style.top = rect.top + "px";
+
     yesBtn.style.width = rect.width + "px";
     yesBtn.style.height = rect.height + "px";
+
     yesBtn.style.transform = "none";
 
     yesBtn.classList.add("yes-final");
 
     yesBtn.offsetHeight;
 
+
+    // بزرگ شدن دکمه سبز
+
     requestAnimationFrame(() => {
 
         yesBtn.style.left = "50%";
         yesBtn.style.top = "50%";
+
         yesBtn.style.width = "100vw";
         yesBtn.style.height = "100vh";
+
         yesBtn.style.transform = "translate(-50%, -50%)";
+
         yesBtn.style.fontSize = "35px";
 
     });
 
+
     yesBtn.textContent = "سوسیس شناسایی شد";
 
+
     // انتقال به صفحه دوم
+
     setTimeout(() => {
 
         yesBtn.style.display = "none";
 
         document.getElementById("page1Header").style.display = "none";
+
         document.getElementById("page1").style.display = "none";
 
         document.getElementById("page2").style.display = "block";
@@ -108,44 +155,73 @@ yesBtn.addEventListener("click", function () {
 });
 
 
-// =================================
+// ========================================
 // انتخاب رنگ گونی
-// =================================
-
+// ========================================
 
 const colorCards = document.querySelectorAll(".color-card");
+
+const colorsContainer = document.getElementById("colorsContainer");
+
+
+// پیام انتخاب رنگ
 
 const selectedMessage = document.createElement("p");
 
 selectedMessage.id = "selectedColorMessage";
+
 selectedMessage.textContent = "هنوز رنگی انتخاب نکردی!";
 
-document.getElementById("colorsContainer")
-    .insertAdjacentElement("afterend", selectedMessage);
+selectedMessage.style.textAlign = "center";
+selectedMessage.style.fontWeight = "bold";
+selectedMessage.style.marginTop = "25px";
+
+colorsContainer.insertAdjacentElement(
+    "afterend",
+    selectedMessage
+);
+
+
+// ========================================
+// کلیک روی کارت های رنگ
+// ========================================
 
 colorCards.forEach(card => {
 
     card.addEventListener("click", function () {
 
         // حذف انتخاب قبلی
+
         colorCards.forEach(item => {
             item.classList.remove("selected");
         });
 
+
         // انتخاب کارت جدید
+
         this.classList.add("selected");
 
-        // ذخیره رنگ
+
+        // ذخیره رنگ انتخابی
+
         selectedColor = this.dataset.color;
 
-        // نمایش پیام
+
+        // نمایش رنگ انتخابی
+
         selectedMessage.textContent =
             "رنگ انتخابی شما: " + selectedColor;
 
         selectedMessage.style.color = "#176b39";
-        selectedMessage.style.fontWeight = "bold";
-        selectedMessage.style.textAlign = "center";
+
+
+        console.log("Selected color:", selectedColor);
 
     });
 
 });
+
+
+// ========================================
+// پایان مرحله دوم
+// ========================================

@@ -75,16 +75,20 @@ yesBtn.addEventListener("click", function () {
 
     yesBtn.offsetHeight;
 
-    requestAnimationFrame(() => {
-        yesBtn.style.left = "50%";
-        yesBtn.style.top = "50%";
-        yesBtn.style.width = "100vw";
-        yesBtn.style.height = "100vh";
-        yesBtn.style.transform = "translate(-50%, -50%)";
-        yesBtn.style.fontSize = "35px";
-       document.getElementById("page1Header").style.display = "none";
-       document.getElementById("page1").style.display = "none";
-document.getElementById("page2").style.display = "block";
+   requestAnimationFrame(() => {
+    yesBtn.style.left = "50%";
+    yesBtn.style.top = "50%";
+    yesBtn.style.width = "100vw";
+    yesBtn.style.height = "100vh";
+    yesBtn.style.transform = "translate(-50%, -50%)";
+    yesBtn.style.fontSize = "35px";
+});
+
+setTimeout(() => {
+    document.getElementById("page1Header").style.display = "none";
+    document.getElementById("page1").style.display = "none";
+    document.getElementById("page2").style.display = "block";
+}, 1000);
     });
 
     yesBtn.textContent = "سوسیس شناسایی شد";

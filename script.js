@@ -5,7 +5,6 @@ const noBtn = document.getElementById("noBtn");
 let noCount = 0;
 
 const messages = [
-   
     "مطمئنی؟",
     "منکه می‌دونم!",
     "جاویدنام به نظر میای",
@@ -14,13 +13,16 @@ const messages = [
     "حالا گی بخور"
 ];
 
+// دکمه خیر
 noBtn.addEventListener("click", function () {
+
     noCount++;
 
-    // پیام طنز
     let oldMessage = document.getElementById("funMessage");
 
-    if (oldMessage) oldMessage.remove();
+    if (oldMessage) {
+        oldMessage.remove();
+    }
 
     const message = document.createElement("p");
     message.id = "funMessage";
@@ -37,7 +39,7 @@ noBtn.addEventListener("click", function () {
     // بزرگ شدن دکمه بله
     yesBtn.style.transform = `scale(${Math.min(1 + noCount * 0.1, 1.5)})`;
 
-    // جابه‌جایی دکمه خیر
+    // موقعیت های دکمه خیر
     const positions = [
         { left: "5%", top: "10%" },
         { left: "75%", top: "15%" },
@@ -54,13 +56,14 @@ noBtn.addEventListener("click", function () {
     noBtn.style.top = position.top;
     noBtn.style.zIndex = "1000";
 
-    // تقریباً ناپدید شدن
+    // ناپدید شدن دکمه خیر
     if (noCount >= 7) {
         noBtn.style.display = "none";
     }
 });
 
-// کلیک روی بله
+
+// دکمه بله
 yesBtn.addEventListener("click", function () {
 
     const rect = yesBtn.getBoundingClientRect();
@@ -76,6 +79,7 @@ yesBtn.addEventListener("click", function () {
 
     yesBtn.offsetHeight;
 
+    // بزرگ شدن دکمه سبز
     requestAnimationFrame(() => {
 
         yesBtn.style.left = "50%";
@@ -89,6 +93,7 @@ yesBtn.addEventListener("click", function () {
 
     yesBtn.textContent = "سوسیس شناسایی شد";
 
+    // انتقال به صفحه دوم
     setTimeout(() => {
 
         yesBtn.style.display = "none";
@@ -100,7 +105,4 @@ yesBtn.addEventListener("click", function () {
 
     }, 1000);
 
-});
-
-    yesBtn.textContent = "سوسیس شناسایی شد";
 });

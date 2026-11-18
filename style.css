@@ -294,3 +294,53 @@ if (colorsContainer) {
 
     });
 }
+
+/* Color card backgrounds */
+
+.color-card[data-color="قرمز"] {
+    background: #ffebeb;
+}
+
+.color-card[data-color="آبی"] {
+    background: #e8f1ff;
+}
+
+.color-card[data-color="سبز"] {
+    background: #e8f8ec;
+}
+
+.color-card[data-color="زرد"] {
+    background: #fff9d9;
+}
+
+.color-card[data-color="نارنجی"] {
+    background: #fff0df;
+}
+
+.color-card[data-color="بنفش"] {
+    background: #f2eaff;
+}
+
+.color-card[data-color="صورتی"] {
+    background: #ffeaf3;
+}
+
+.color-card[data-color="قهوه‌ای"] {
+    background: #eee0d3;
+}
+
+.color-card[data-color="مشکی"] {
+    background: #dedede;
+}
+
+.color-card[data-color="سفید"] {
+    background: #ffffff;
+}
+
+.color-card[data-color="فیروزه‌ای"] {
+    background: #ddf8f5;
+}
+
+.color-card[data-color="طلایی"] {
+    background: #fff0bd;
+}

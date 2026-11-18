@@ -377,3 +377,28 @@ button {
     box-shadow: 0 0 20px rgba(184, 134, 11, 0.5);
     transform: translateY(-6px);
 }
+.submit-btn {
+    display: block;
+    margin: 30px auto 10px;
+    padding: 14px 45px;
+    border: none;
+    border-radius: 14px;
+    background: #219653;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background: #176b39;
+    transform: translateY(-3px);
+}
+
+#requestMessage {
+    text-align: center;
+    font-weight: bold;
+    font-size: 17px;
+    margin-top: 20px;
+}

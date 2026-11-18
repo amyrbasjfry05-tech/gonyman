@@ -3,6 +3,7 @@ const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 
 let noCount = 0;
+let selectedColor = null;
 
 const messages = [
     "مطمئنی؟",
@@ -28,7 +29,7 @@ noBtn.addEventListener("click", function () {
     message.id = "funMessage";
     message.textContent = messages[Math.min(noCount - 1, messages.length - 1)];
 
-    document.querySelector(".question-box").appendChild(message);
+    document.querySelector("#page1 .question-box").appendChild(message);
 
     // کوچک شدن دکمه خیر
     const size = Math.max(0.05, 1 - noCount * 0.16);
@@ -79,7 +80,6 @@ yesBtn.addEventListener("click", function () {
 
     yesBtn.offsetHeight;
 
-    // بزرگ شدن دکمه سبز
     requestAnimationFrame(() => {
 
         yesBtn.style.left = "50%";
@@ -104,5 +104,47 @@ yesBtn.addEventListener("click", function () {
         document.getElementById("page2").style.display = "block";
 
     }, 1000);
+
+});
+
+
+// =================================
+// انتخاب رنگ گونی
+// =================================
+
+const colorCards = document.querySelectorAll(".color-card");
+
+const colorsContainer = document.getElementById("colorsContainer");
+
+// ساخت پیام رنگ انتخابی
+const selectedMessage = document.createElement("p");
+
+selectedMessage.id = "selectedColorMessage";
+selectedMessage.textContent = "هنوز رنگی انتخاب نکردی!";
+
+colorsContainer.insertAdjacentElement("afterend", selectedMessage);
+
+
+// کلیک روی کارت های رنگ
+colorCards.forEach(card => {
+
+    card.addEventListener("click", function () {
+
+        // حذف انتخاب قبلی
+        colorCards.forEach(item => {
+            item.classList.remove("selected");
+        });
+
+        // انتخاب کارت جدید
+        this.classList.add("selected");
+
+        // ذخیره رنگ انتخابی
+        selectedColor = this.dataset.color;
+
+        // نمایش رنگ انتخابی
+        selectedMessage.textContent =
+            "رنگ انتخابی شما: " + selectedColor;
+
+    });
 
 });

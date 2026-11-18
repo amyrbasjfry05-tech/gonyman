@@ -202,3 +202,66 @@ button {
         font-size: 15px;
     }
 }
+
+/* ===== GonyMan Color Cards ===== */
+
+#colorsContainer {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 35px auto;
+    padding: 10px;
+}
+
+.color-card {
+    background: #ffffff;
+    border: 2px solid #eeeeee;
+    border-radius: 18px;
+    padding: 18px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+}
+
+.color-card:hover {
+    transform: translateY(-7px) scale(1.03);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.13);
+    border-color: #d4a017;
+}
+
+.color-card img {
+    width: 100%;
+    max-width: 150px;
+    height: 130px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 12px;
+}
+
+.color-card h3 {
+    font-size: 17px;
+    color: #333333;
+    margin: 8px 0 0;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    #colorsContainer {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+}
+
+@media (max-width: 400px) {
+    #colorsContainer {
+        gap: 10px;
+    }
+
+    .color-card {
+        padding: 12px;
+    }
+}

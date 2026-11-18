@@ -62,6 +62,7 @@ noBtn.addEventListener("click", function () {
 
 // کلیک روی بله
 yesBtn.addEventListener("click", function () {
+
     const rect = yesBtn.getBoundingClientRect();
 
     yesBtn.style.position = "fixed";
@@ -75,26 +76,31 @@ yesBtn.addEventListener("click", function () {
 
     yesBtn.offsetHeight;
 
-   requestAnimationFrame(() => {
-    yesBtn.style.left = "50%";
-    yesBtn.style.top = "50%";
-    yesBtn.style.width = "100vw";
-    yesBtn.style.height = "100vh";
-    yesBtn.style.transform = "translate(-50%, -50%)";
-    yesBtn.style.fontSize = "35px";
-});
+    requestAnimationFrame(() => {
 
-setTimeout(() => {
+        yesBtn.style.left = "50%";
+        yesBtn.style.top = "50%";
+        yesBtn.style.width = "100vw";
+        yesBtn.style.height = "100vh";
+        yesBtn.style.transform = "translate(-50%, -50%)";
+        yesBtn.style.fontSize = "35px";
 
-    yesBtn.style.display = "none";
-
-    document.getElementById("page1Header").style.display = "none";
-    document.getElementById("page1").style.display = "none";
-
-    document.getElementById("page2").style.display = "block";
-
-}, 1000);
     });
+
+    yesBtn.textContent = "سوسیس شناسایی شد";
+
+    setTimeout(() => {
+
+        yesBtn.style.display = "none";
+
+        document.getElementById("page1Header").style.display = "none";
+        document.getElementById("page1").style.display = "none";
+
+        document.getElementById("page2").style.display = "block";
+
+    }, 1000);
+
+});
 
     yesBtn.textContent = "سوسیس شناسایی شد";
 });

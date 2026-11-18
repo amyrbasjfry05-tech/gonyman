@@ -265,3 +265,32 @@ button {
         padding: 12px;
     }
 }
+
+const colorsContainer = document.getElementById("colorsContainer");
+
+if (colorsContainer) {
+    colorsContainer.addEventListener("click", function (event) {
+
+        const card = event.target.closest(".color-card");
+
+        if (!card || !colorsContainer.contains(card)) {
+            return;
+        }
+
+        // حذف انتخاب قبلی
+        const oldSelected = colorsContainer.querySelector(".selected");
+
+        if (oldSelected) {
+            oldSelected.classList.remove("selected");
+        }
+
+        // انتخاب رنگ جدید
+        card.classList.add("selected");
+
+        // ذخیره رنگ انتخاب‌شده
+        const selectedColor = card.dataset.color;
+
+        console.log("رنگ انتخاب‌شده:", selectedColor);
+
+    });
+}

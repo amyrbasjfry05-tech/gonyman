@@ -83,6 +83,8 @@ yesBtn.addEventListener("click", function () {
         yesBtn.style.transform = "translate(-50%, -50%)";
         yesBtn.style.fontSize = "35px";
        document.getElementById("page1Header").style.display = "none";
+       document.getElementById("page1").style.display = "none";
+document.getElementById("page2").style.display = "block";
     });
 
     yesBtn.textContent = "سوسیس شناسایی شد";

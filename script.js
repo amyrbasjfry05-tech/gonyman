@@ -5,12 +5,12 @@ const noBtn = document.getElementById("noBtn");
 let noCount = 0;
 
 const messages = [
-    "منظورت بله هست دیگه؟",
-    "فکر کنم اشتباه کلیک کردی!",
-    "دوباره فکر کن...",
-    "این دکمه چرا هنوز کار می‌کنه؟",
-    "لطفاً همکاری کنید!",
-    "دیگه بسه واقعاً!"
+    "مطمئنی؟",
+    "منکه میدونم!",
+    "جاویدنام به نظر میای",
+    "سابقه جاویدنامیت چیز دیگه ای میگه
+    "اون یکی داشاق و بزن",
+    "حالا گی بخور"
 ];
 
 noBtn.addEventListener("click", function () {
@@ -34,7 +34,7 @@ noBtn.addEventListener("click", function () {
     noBtn.style.opacity = Math.max(0.05, 1 - noCount * 0.15);
 
     // بزرگ شدن دکمه بله
-    yesBtn.style.transform = `scale(${1 + noCount * 0.2})`;
+    yesBtn.style.transform = `scale(${Math.min(1 + noCount * 0.1, 1.5)})`;
 
     // جابه‌جایی دکمه خیر
     const positions = [
@@ -83,5 +83,5 @@ yesBtn.addEventListener("click", function () {
         yesBtn.style.fontSize = "35px";
     });
 
-    yesBtn.textContent = "درخواست شما تأیید شد!";
+    yesBtn.textContent = "سوسیس شناسایی شد";
 });

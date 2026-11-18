@@ -318,3 +318,55 @@ button {
     color: #176b39;
     font-weight: bold;
 }
+
+/* ===== GonyMan Sack Images ===== */
+
+.colors-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.color-card {
+    overflow: hidden;
+    border-radius: 18px;
+    padding: 15px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+.color-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+    display: block;
+    border-radius: 12px;
+}
+
+.color-card p {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 12px 0 0;
+    color: #292929;
+}
+
+.color-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* نمایش بهتر در موبایل */
+
+@media (max-width: 700px) {
+    .colors-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .color-card img {
+        height: 120px;
+    }
+}

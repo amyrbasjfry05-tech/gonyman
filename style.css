@@ -1,4 +1,5 @@
 
+/* تنظیمات پایه */
 * {
     margin: 0;
     padding: 0;
@@ -13,6 +14,7 @@ body {
     min-height: 100vh;
 }
 
+/* هدر سایت */
 header {
     padding: 22px 8%;
     display: flex;
@@ -37,10 +39,11 @@ header {
     font-size: 13px;
 }
 
+/* محتوای اصلی */
 .container {
     width: 90%;
     max-width: 750px;
-    margin: 100px auto;
+    margin: 80px auto;
     text-align: center;
 }
 
@@ -65,25 +68,34 @@ h1 {
     line-height: 2;
 }
 
+/* کادر سؤال */
 .question-box {
     background: #19221c;
     border: 1px solid #354638;
     border-radius: 15px;
     padding: 40px 20px;
     margin-top: 45px;
+    overflow: visible;
 }
 
 .question-box h2 {
-    font-size: 21px;
+    font-family: Tahoma, sans-serif;
+    font-size: 27px;
+    font-weight: 900;
+    color: #e1eadf;
+    letter-spacing: -1px;
+    line-height: 1.8;
     margin-bottom: 35px;
 }
 
+/* دکمه‌ها */
 .buttons {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    min-height: 60px;
+    min-height: 70px;
+    position: relative;
 }
 
 button {
@@ -94,45 +106,99 @@ button {
     font-family: inherit;
     font-size: 16px;
     transition: all 0.3s ease;
+    position: relative;
 }
 
 #yesBtn {
     background: #568c53;
     color: white;
+    z-index: 2;
+    transform-origin: center;
+}
+
+#yesBtn:hover {
+    background: #6ba966;
 }
 
 #noBtn {
     background: #873f3f;
     color: white;
+    z-index: 3;
 }
 
+#noBtn:hover {
+    background: #a34d4d;
+}
+
+/* پیام‌های طنز */
+#funMessage {
+    color: #d8e8d2;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 30px;
+    line-height: 2;
+    animation: messageAppear 0.35s ease;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes messageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* دکمه بله در حالت نهایی */
+#yesBtn.yes-final {
+    position: fixed;
+    z-index: 9999;
+    border-radius: 0;
+    transition: all 0.5s ease;
+}
+
+/* متن پایین */
 .footer-note {
     margin-top: 70px;
     color: #657168;
     font-size: 11px;
 }
 
+/* نمایش در موبایل */
 @media (max-width: 600px) {
     header {
         padding: 18px 5%;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .container {
+        margin: 55px auto;
     }
 
     h1 {
         font-size: 23px;
     }
 
+    .question-box {
+        padding: 30px 15px;
+    }
+
     .question-box h2 {
-    font-family: Tahoma, sans-serif;
-    font-size: 27px;
-    font-weight: 900;
-    color: #e1eadf;
-    letter-spacing: -1px;
-    line-height: 1.8;
-    margin-bottom: 35px;
-}
+        font-size: 23px;
+    }
 
     button {
         padding: 13px 23px;
         font-size: 14px;
+    }
+
+    #funMessage {
+        font-size: 15px;
     }
 }

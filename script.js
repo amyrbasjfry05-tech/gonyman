@@ -4,17 +4,84 @@ const noBtn = document.getElementById("noBtn");
 
 let noCount = 0;
 
+const messages = [
+    "منظورت بله هست دیگه؟",
+    "فکر کنم اشتباه کلیک کردی!",
+    "دوباره فکر کن...",
+    "این دکمه چرا هنوز کار می‌کنه؟",
+    "لطفاً همکاری کنید!",
+    "دیگه بسه واقعاً!"
+];
+
 noBtn.addEventListener("click", function () {
     noCount++;
 
-    const newSize = Math.max(0.05, 1 - noCount * 0.18);
+    // پیام طنز
+    let oldMessage = document.getElementById("funMessage");
 
-    noBtn.style.transform = `scale(${newSize})`;
-    noBtn.style.opacity = Math.max(0, 1 - noCount * 0.18);
+    if (oldMessage) oldMessage.remove();
 
-    yesBtn.style.transform = `scale(${1 + noCount * 0.25})`;
+    const message = document.createElement("p");
+    message.id = "funMessage";
+    message.textContent = messages[Math.min(noCount - 1, messages.length - 1)];
+
+    document.querySelector(".question-box").appendChild(message);
+
+    // کوچک شدن دکمه خیر
+    const size = Math.max(0.05, 1 - noCount * 0.16);
+
+    noBtn.style.transform = `scale(${size})`;
+    noBtn.style.opacity = Math.max(0.05, 1 - noCount * 0.15);
+
+    // بزرگ شدن دکمه بله
+    yesBtn.style.transform = `scale(${1 + noCount * 0.2})`;
+
+    // جابه‌جایی دکمه خیر
+    const positions = [
+        { left: "5%", top: "10%" },
+        { left: "75%", top: "15%" },
+        { left: "10%", top: "75%" },
+        { left: "80%", top: "75%" },
+        { left: "50%", top: "5%" },
+        { left: "50%", top: "90%" }
+    ];
+
+    const position = positions[(noCount - 1) % positions.length];
+
+    noBtn.style.position = "fixed";
+    noBtn.style.left = position.left;
+    noBtn.style.top = position.top;
+    noBtn.style.zIndex = "1000";
+
+    // تقریباً ناپدید شدن
+    if (noCount >= 7) {
+        noBtn.style.display = "none";
+    }
 });
 
+// کلیک روی بله
 yesBtn.addEventListener("click", function () {
-    alert("درخواست شما تأیید شد! به مرحله بعد خوش آمدید.");
+    const rect = yesBtn.getBoundingClientRect();
+
+    yesBtn.style.position = "fixed";
+    yesBtn.style.left = rect.left + "px";
+    yesBtn.style.top = rect.top + "px";
+    yesBtn.style.width = rect.width + "px";
+    yesBtn.style.height = rect.height + "px";
+    yesBtn.style.transform = "none";
+
+    yesBtn.classList.add("yes-final");
+
+    yesBtn.offsetHeight;
+
+    requestAnimationFrame(() => {
+        yesBtn.style.left = "50%";
+        yesBtn.style.top = "50%";
+        yesBtn.style.width = "100vw";
+        yesBtn.style.height = "100vh";
+        yesBtn.style.transform = "translate(-50%, -50%)";
+        yesBtn.style.fontSize = "35px";
+    });
+
+    yesBtn.textContent = "درخواست شما تأیید شد!";
 });

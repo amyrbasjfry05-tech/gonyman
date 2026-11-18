@@ -85,9 +85,14 @@ yesBtn.addEventListener("click", function () {
 });
 
 setTimeout(() => {
+
+    yesBtn.style.display = "none";
+
     document.getElementById("page1Header").style.display = "none";
     document.getElementById("page1").style.display = "none";
+
     document.getElementById("page2").style.display = "block";
+
 }, 1000);
     });
 

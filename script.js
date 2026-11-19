@@ -231,130 +231,59 @@ const colorCodes = {
 // ثبت نهایی درخواست
 // ========================================
 
+
 submitRequestBtn.addEventListener("click", function () {
 
-    // جلوگیری از ثبت بدون انتخاب رنگ
-
-    if (!selectedColor) {
-        return;
-    }
-
-    // جلوگیری از کلیک مجدد
+    if (!selectedColor) return;
 
     submitRequestBtn.disabled = true;
 
-    // رنگ گونی انتخاب شده
-
     const selectedHex = colorCodes[selectedColor];
-
-    // ساخت صفحه تمام صفحه
 
     const confirmationScreen = document.createElement("div");
 
     confirmationScreen.id = "confirmationScreen";
 
-    confirmationScreen.style.position = "fixed";
-    confirmationScreen.style.inset = "0";
-    confirmationScreen.style.width = "100%";
-    confirmationScreen.style.height = "100%";
-    confirmationScreen.style.backgroundColor = selectedHex;
-    confirmationScreen.style.zIndex = "99999";
-
-    confirmationScreen.style.display = "flex";
-    confirmationScreen.style.flexDirection = "column";
-    confirmationScreen.style.alignItems = "center";
-    confirmationScreen.style.justifyContent = "center";
-
-    confirmationScreen.style.textAlign = "center";
-    confirmationScreen.style.padding = "20px";
-    confirmationScreen.style.boxSizing = "border-box";
-
-    confirmationScreen.style.opacity = "0";
-    confirmationScreen.style.transition = "opacity 0.5s ease";
-
-    // رنگ نوشته متناسب با پس زمینه
+    confirmationScreen.style.cssText = `
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background-color: ${selectedHex};
+        z-index: 2147483647;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        box-sizing: border-box;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    `;
 
     const textColor =
-        selectedColor === "سفید" ||
-        selectedColor === "زرد" ||
-        selectedColor === "طلایی" ||
-        selectedColor === "صورتی"
-            ? "#222222"
-            : "#ffffff";
+        ["سفید", "زرد", "طلایی", "صورتی"].includes(selectedColor)
+        ? "#222222"
+        : "#ffffff";
 
     confirmationScreen.style.color = textColor;
 
-    // متن صفحه تأیید
-
     confirmationScreen.innerHTML = `
-        <div style="
-            font-size: 65px;
-            margin-bottom: 20px;
-            animation: popIn 0.7s ease;
-        ">✓</div>
-
-       confirmationScreen.innerHTML = `
-    <h1 style="
-        font-size: clamp(25px, 5vw, 42px);
-        text-align: center;
-    ">
-        گونی ${selectedColor} شما انتخاب شد!
-    </h1>
-`;
-        </h1>
-
-        
-
-        <p style="
-            font-size: 17px;
-            margin-top: 20px;
+        <h1 style="
+            font-size: clamp(25px, 5vw, 42px);
+            text-align: center;
         ">
-            در حال انتقال به مرحله بعد...
-        </p>
+            گونی ${selectedColor} شما انتخاب شد!
+        </h1>
     `;
-
-    // انیمیشن ورود
-
-    const animationStyle = document.createElement("style");
-
-    animationStyle.textContent = `
-        @keyframes popIn {
-            0% {
-                transform: scale(0.3);
-                opacity: 0;
-            }
-            70% {
-                transform: scale(1.2);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-    `;
-
-    document.head.appendChild(animationStyle);
 
     document.body.appendChild(confirmationScreen);
-    screen.style.zIndex = "2147483647";
-screen.style.position = "fixed";
-screen.style.inset = "0";
-screen.style.display = "flex";
-
-screen.style.visibility = "visible";
-screen.style.opacity = "1";
-screen.style.pointerEvents = "auto";
-
-    // نمایش صفحه تمام صفحه
 
     document.body.style.overflow = "hidden";
 
     requestAnimationFrame(() => {
         confirmationScreen.style.opacity = "1";
     });
-
-    // انتقال به صفحه سوم
 
     setTimeout(() => {
 
@@ -365,15 +294,12 @@ screen.style.pointerEvents = "auto";
             confirmationScreen.remove();
 
             document.getElementById("page2").style.display = "none";
-
             document.getElementById("page3").style.display = "block";
 
             document.getElementById("finalColorMessage").textContent =
-                "گونی انتخابی شما: " + selectedColor;
+                `گونی ${selectedColor} شما انتخاب شد!`;
 
             document.body.style.overflow = "";
-
-            document.body.style.backgroundColor = "";
 
             window.scrollTo(0, 0);
 

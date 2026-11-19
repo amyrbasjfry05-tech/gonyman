@@ -162,10 +162,151 @@
 
 </body>
 </html>
-<!-- صفحه سوم -->
 
-<main class="container" id="page3" style="display: none;">
+<!-- صفحه سوم: تیونینگ -->
 
-    <!-- محتوای صفحه سوم بعداً اضافه می‌شود -->
+<main class="container tuning-container" id="page3" style="display: none;">
+
+    <div class="badge">GONYMAN TUNING GARAGE</div>
+
+    <h1>گاراژ تیونینگ گونی‌من</h1>
+
+    <p class="description">
+        خودروی مورد علاقه‌ات را انتخاب کن و تغییرش بده!
+    </p>
+
+    <!-- انتخاب خودرو -->
+
+    <section class="tuning-section">
+
+        <h2>🚘 انتخاب خودرو</h2>
+
+        <div class="car-list">
+
+            <div class="car-card" data-car="car1">
+                <img src="images/cars/car1.jpg" alt="خودروی اول">
+                <p>خودروی گشت شماره ۱</p>
+            </div>
+
+            <div class="car-card" data-car="car2">
+                <img src="images/cars/car2.jpg" alt="خودروی دوم">
+                <p>خودروی گشت شماره ۲</p>
+            </div>
+
+            <div class="car-card" data-car="car3">
+                <img src="images/cars/car3.jpg" alt="خودروی سوم">
+                <p>خودروی گشت شماره ۳</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- پیش نمایش خودرو -->
+
+    <section class="tuning-section">
+
+        <h2>🛠️ پیش‌نمایش تیونینگ</h2>
+
+        <div class="car-preview" id="carPreview">
+
+            <img
+                id="mainCarImage"
+                src="images/cars/car1.jpg"
+                alt="خودروی انتخاب شده"
+            >
+
+            <div id="carPartsLayer"></div>
+
+            <div id="carStickersLayer"></div>
+
+        </div>
+
+        <button id="resetTuningBtn">
+            بازگشت به حالت اولیه
+        </button>
+
+    </section>
+
+
+    <!-- تجهیزات -->
+
+    <section class="tuning-section">
+
+        <h2>⚙️ تجهیزات تیونینگ</h2>
+
+        <div class="parts-list" id="partsList">
+
+            <div class="part-card" data-part="wheel">
+                <img src="images/parts/wheel.png" alt="رینگ">
+                <p>رینگ</p>
+            </div>
+
+            <div class="part-card" data-part="spoiler">
+                <img src="images/parts/spoiler.png" alt="بال عقب">
+                <p>بال عقب</p>
+            </div>
+
+            <div class="part-card" data-part="bumper">
+                <img src="images/parts/bumper.png" alt="سپر">
+                <p>سپر</p>
+            </div>
+
+            <div class="part-card" data-part="light">
+                <img src="images/parts/light.png" alt="چراغ">
+                <p>چراغ</p>
+            </div>
+
+            <div class="part-card" data-part="hood">
+                <img src="images/parts/hood.png" alt="کاپوت">
+                <p>کاپوت</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- استیکرها -->
+
+    <section class="tuning-section">
+
+        <h2>🎨 استیکرها</h2>
+
+        <div class="sticker-categories">
+
+            <button class="sticker-tab" data-category="political">
+                تاریخی و سیاسی
+            </button>
+
+            <button class="sticker-tab" data-category="iranian">
+                ایرانی
+            </button>
+
+            <button class="sticker-tab" data-category="organizational">
+                سازمانی
+            </button>
+
+            <button class="sticker-tab" data-category="fun">
+                طنز و سرگرمی
+            </button>
+
+        </div>
+
+        <div class="stickers-list" id="stickersList">
+
+            <!-- استیکرها با جاوااسکریپت بارگذاری می‌شوند -->
+
+        </div>
+
+    </section>
+
+
+    <button id="saveTuningBtn" class="submit-btn">
+        ذخیره طرح نهایی
+    </button>
+
+    <p id="tuningMessage"></p>
 
 </main>

@@ -297,7 +297,7 @@ submitRequestBtn.addEventListener("click", function () {
             document.getElementById("page3").style.display = "block";
 
             document.getElementById("finalColorMessage").textContent =
-                `گونی ${selectedColor} شما انتخاب شد!`;
+            document.getElementById("finalColorMessage").textContent = "";
 
             document.body.style.overflow = "";
 

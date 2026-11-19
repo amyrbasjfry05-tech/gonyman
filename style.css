@@ -494,3 +494,299 @@ h1 {
         object-fit: contain;
     }
 }
+
+/* ========================================
+   GONYMAN GARAGE - NAVY & NEON BLUE
+======================================== */
+
+.tuning-container {
+    max-width: 1100px;
+    background: #202A38;
+    border: 1px solid #35465B;
+    color: #EAF4FC;
+}
+
+.tuning-container h1,
+.tuning-container h2 {
+    color: #EAF4FC;
+}
+
+.tuning-section {
+    background: #182331;
+    border: 1px solid #35465B;
+    border-radius: 20px;
+    padding: 22px;
+    margin: 25px 0;
+}
+
+.tuning-section h2 {
+    font-size: 21px;
+    margin-bottom: 20px;
+}
+
+/* خودروها */
+
+.car-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.car-card {
+    background: #26374A;
+    border: 2px solid #35465B;
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.car-card img {
+    width: 100%;
+    height: 110px;
+    object-fit: contain;
+}
+
+.car-card p {
+    color: white;
+    font-size: 13px;
+}
+
+.car-card:hover,
+.car-card.selected {
+    border-color: #36A9E1;
+    box-shadow: 0 0 15px #36A9E155;
+}
+
+/* پیش نمایش خودرو */
+
+.car-preview {
+    position: relative;
+    width: 100%;
+    min-height: 250px;
+    background: #111820;
+    border: 1px solid #36A9E155;
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#mainCarImage {
+    display: block;
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+}
+
+#carPartsLayer,
+#carStickersLayer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.installed-part {
+    position: absolute;
+    width: 22%;
+    height: 25%;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+/* موقعیت تقریبی قطعات */
+
+.installed-part[data-part="wheel"] {
+    left: 15%;
+    bottom: 12%;
+}
+
+.installed-part[data-part="spoiler"] {
+    right: 12%;
+    top: 20%;
+}
+
+.installed-part[data-part="bumper"] {
+    left: 5%;
+    bottom: 20%;
+}
+
+.installed-part[data-part="light"] {
+    left: 8%;
+    top: 28%;
+}
+
+.installed-part[data-part="hood"] {
+    left: 35%;
+    top: 18%;
+}
+
+/* تجهیزات */
+
+.parts-list {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.part-card {
+    background: #26374A;
+    border: 2px solid #35465B;
+    border-radius: 15px;
+    padding: 12px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.part-card img {
+    width: 100%;
+    height: 90px;
+    object-fit: contain;
+}
+
+.part-card p {
+    color: #EAF4FC;
+    font-size: 13px;
+}
+
+.part-card.selected {
+    border-color: #36A9E1;
+    box-shadow: 0 0 15px #36A9E177;
+    background: #30485F;
+}
+
+/* استیکرها */
+
+.sticker-categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.sticker-tab {
+    background: #26374A;
+    color: white;
+    border: 1px solid #36A9E1;
+    border-radius: 10px;
+    padding: 10px 16px;
+}
+
+.stickers-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.sticker-card {
+    background: #26374A;
+    border: 1px solid #35465B;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.sticker-card img {
+    width: 100%;
+    height: 100px;
+    object-fit: contain;
+}
+
+.sticker-card p {
+    color: white;
+}
+
+.sticker-card button,
+#resetTuningBtn {
+    background: #36A9E1;
+    color: #102030;
+    border: none;
+    border-radius: 9px;
+    padding: 10px 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* استیکر نصب شده */
+
+#carStickersLayer {
+    pointer-events: none;
+}
+
+.installed-sticker {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+    transform: translate(-50%, -50%);
+    pointer-events: auto;
+    touch-action: none;
+    cursor: grab;
+}
+
+/* دکمه ذخیره */
+
+#saveTuningBtn {
+    background: #36A9E1;
+    color: #102030;
+}
+
+#saveTuningBtn:hover,
+.sticker-card button:hover {
+    background: #69C7F3;
+}
+
+#tuningMessage {
+    color: #69C7F3;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* موبایل */
+
+@media(max-width:700px) {
+
+    .car-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .car-card img {
+        height: 75px;
+    }
+
+    .parts-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 7px;
+    }
+
+    .part-card {
+        padding: 7px;
+    }
+
+    .part-card img {
+        height: 65px;
+    }
+
+    .tuning-section {
+        padding: 12px;
+    }
+
+    .car-preview {
+        min-height: 180px;
+    }
+
+    #mainCarImage {
+        max-height: 250px;
+    }
+
+    .stickers-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .installed-sticker {
+        width: 48px;
+        height: 48px;
+    }
+}

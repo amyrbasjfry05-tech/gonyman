@@ -3,17 +3,15 @@
 // GONYMAN - MAIN JAVASCRIPT
 // ========================================
 
-
-// دکمه های صفحه اول
+// ========================================
+// صفحه اول: دکمه ها
+// ========================================
 
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 
 let noCount = 0;
 let selectedColor = null;
-
-
-// پیام های طنز دکمه خیر
 
 const messages = [
     "مطمئنی؟",
@@ -24,193 +22,144 @@ const messages = [
     "حالا گی بخور"
 ];
 
+if (noBtn && yesBtn) {
 
-// ========================================
-// دکمه خیر
-// ========================================
+    noBtn.addEventListener("click", function () {
 
-noBtn.addEventListener("click", function () {
+        noCount++;
 
-    noCount++;
+        document.getElementById("funMessage")?.remove();
 
-    let oldMessage = document.getElementById("funMessage");
+        const message = document.createElement("p");
+        message.id = "funMessage";
+        message.textContent =
+            messages[Math.min(noCount - 1, messages.length - 1)];
 
-    if (oldMessage) {
-        oldMessage.remove();
-    }
+        document.querySelector("#page1 .question-box")
+            .appendChild(message);
 
-    const message = document.createElement("p");
+        const size = Math.max(0.05, 1 - noCount * 0.16);
 
-    message.id = "funMessage";
-    message.textContent =
-        messages[Math.min(noCount - 1, messages.length - 1)];
+        noBtn.style.transform = `scale(${size})`;
+        noBtn.style.opacity = Math.max(0.05, 1 - noCount * 0.15);
 
-    document.querySelector("#page1 .question-box")
-        .appendChild(message);
+        yesBtn.style.transform =
+            `scale(${Math.min(1 + noCount * 0.1, 1.5)})`;
 
-    const size = Math.max(0.05, 1 - noCount * 0.16);
+        const positions = [
+            { left: "5%", top: "10%" },
+            { left: "75%", top: "15%" },
+            { left: "10%", top: "75%" },
+            { left: "80%", top: "75%" },
+            { left: "50%", top: "5%" },
+            { left: "50%", top: "90%" }
+        ];
 
-    noBtn.style.transform = `scale(${size})`;
-    noBtn.style.opacity = Math.max(0.05, 1 - noCount * 0.15);
+        const position =
+            positions[(noCount - 1) % positions.length];
 
-    yesBtn.style.transform =
-        `scale(${Math.min(1 + noCount * 0.1, 1.5)})`;
+        noBtn.style.position = "fixed";
+        noBtn.style.left = position.left;
+        noBtn.style.top = position.top;
+        noBtn.style.zIndex = "1000";
 
-    const positions = [
-        { left: "5%", top: "10%" },
-        { left: "75%", top: "15%" },
-        { left: "10%", top: "75%" },
-        { left: "80%", top: "75%" },
-        { left: "50%", top: "5%" },
-        { left: "50%", top: "90%" }
-    ];
-
-    const position =
-        positions[(noCount - 1) % positions.length];
-
-    noBtn.style.position = "fixed";
-    noBtn.style.left = position.left;
-    noBtn.style.top = position.top;
-    noBtn.style.zIndex = "1000";
-
-    if (noCount >= 7) {
-        noBtn.style.display = "none";
-    }
-
-});
-
-
-// ========================================
-// دکمه بله
-// ========================================
-
-yesBtn.addEventListener("click", function () {
-
-    const rect = yesBtn.getBoundingClientRect();
-
-    yesBtn.style.position = "fixed";
-    yesBtn.style.left = rect.left + "px";
-    yesBtn.style.top = rect.top + "px";
-    yesBtn.style.width = rect.width + "px";
-    yesBtn.style.height = rect.height + "px";
-
-    yesBtn.style.transform = "none";
-    yesBtn.classList.add("yes-final");
-
-    yesBtn.offsetHeight;
-
-    requestAnimationFrame(() => {
-
-        yesBtn.style.left = "50%";
-        yesBtn.style.top = "50%";
-        yesBtn.style.width = "100vw";
-        yesBtn.style.height = "100vh";
-        yesBtn.style.transform = "translate(-50%, -50%)";
-        yesBtn.style.fontSize = "35px";
-
+        if (noCount >= 7) {
+            noBtn.style.display = "none";
+        }
     });
 
-    yesBtn.textContent = "سوسیس شناسایی شد";
 
-    setTimeout(() => {
+    yesBtn.addEventListener("click", function () {
 
-        yesBtn.style.display = "none";
+        const rect = yesBtn.getBoundingClientRect();
 
-        document.getElementById("page1Header").style.display = "none";
-        document.getElementById("page1").style.display = "none";
-        document.getElementById("page2").style.display = "block";
+        yesBtn.style.position = "fixed";
+        yesBtn.style.left = rect.left + "px";
+        yesBtn.style.top = rect.top + "px";
+        yesBtn.style.width = rect.width + "px";
+        yesBtn.style.height = rect.height + "px";
 
-    }, 1000);
+        yesBtn.style.transform = "none";
+        yesBtn.classList.add("yes-final");
 
-});
+        yesBtn.offsetHeight;
+
+        requestAnimationFrame(() => {
+            yesBtn.style.left = "50%";
+            yesBtn.style.top = "50%";
+            yesBtn.style.width = "100vw";
+            yesBtn.style.height = "100vh";
+            yesBtn.style.transform = "translate(-50%, -50%)";
+            yesBtn.style.fontSize = "35px";
+        });
+
+        yesBtn.textContent = "سوسیس شناسایی شد";
+
+        setTimeout(() => {
+
+            yesBtn.style.display = "none";
+
+            document.getElementById("page1Header").style.display = "none";
+            document.getElementById("page1").style.display = "none";
+            document.getElementById("page2").style.display = "block";
+
+        }, 1000);
+    });
+}
 
 
 // ========================================
-// انتخاب رنگ گونی
+// صفحه دوم: انتخاب رنگ گونی
 // ========================================
 
 const colorCards = document.querySelectorAll(".color-card");
-
 const colorsContainer = document.getElementById("colorsContainer");
+const submitRequestBtn = document.getElementById("submitRequestBtn");
 
-const submitRequestBtn =
-    document.getElementById("submitRequestBtn");
+if (colorsContainer && submitRequestBtn) {
 
+    const selectedMessage = document.createElement("p");
 
-// پیام انتخاب رنگ
+    selectedMessage.id = "selectedColorMessage";
+    selectedMessage.textContent = "هنوز رنگی انتخاب نکردی!";
 
-const selectedMessage = document.createElement("p");
+    colorsContainer.insertAdjacentElement("afterend", selectedMessage);
 
-selectedMessage.id = "selectedColorMessage";
-selectedMessage.textContent = "هنوز رنگی انتخاب نکردی!";
+    submitRequestBtn.disabled = true;
+    submitRequestBtn.style.opacity = "0.5";
 
-selectedMessage.style.textAlign = "center";
-selectedMessage.style.fontWeight = "bold";
-selectedMessage.style.marginTop = "25px";
+    colorCards.forEach(card => {
 
-colorsContainer.insertAdjacentElement(
-    "afterend",
-    selectedMessage
-);
+        card.addEventListener("click", function () {
 
+            colorCards.forEach(item =>
+                item.classList.remove("selected")
+            );
 
-// دکمه ثبت در ابتدا غیرفعال
+            this.classList.add("selected");
 
-submitRequestBtn.disabled = true;
+            selectedColor = this.dataset.color;
 
-submitRequestBtn.style.opacity = "0.5";
-submitRequestBtn.style.cursor = "not-allowed";
+            selectedMessage.textContent =
+                "رنگ انتخابی شما: " + selectedColor;
 
+            selectedMessage.style.color = "#176b39";
 
-// ========================================
-// کلیک روی کارت های رنگ
-// ========================================
+            submitRequestBtn.disabled = false;
+            submitRequestBtn.style.opacity = "1";
+            submitRequestBtn.style.cursor = "pointer";
 
-colorCards.forEach(card => {
-
-    card.addEventListener("click", function () {
-
-        // حذف انتخاب قبلی
-
-        colorCards.forEach(item => {
-            item.classList.remove("selected");
         });
-
-        // انتخاب کارت جدید
-
-        this.classList.add("selected");
-
-        // ذخیره رنگ انتخابی
-
-        selectedColor = this.dataset.color;
-
-        // نمایش رنگ انتخابی
-
-        selectedMessage.textContent =
-            "رنگ انتخابی شما: " + selectedColor;
-
-        selectedMessage.style.color = "#176b39";
-
-        // فعال شدن دکمه ثبت
-
-        submitRequestBtn.disabled = false;
-
-        submitRequestBtn.style.opacity = "1";
-        submitRequestBtn.style.cursor = "pointer";
-
-        console.log("Selected color:", selectedColor);
-
     });
 
-});
+}
 
 
 // ========================================
-// رنگ های گونی
+// ثبت درخواست
 // ========================================
 
 const colorCodes = {
-
     "قرمز": "#e53935",
     "آبی": "#2196f3",
     "سبز": "#43a047",
@@ -223,88 +172,401 @@ const colorCodes = {
     "سفید": "#f5f5f5",
     "فیروزه‌ای": "#26c6da",
     "طلایی": "#d4af37"
+};
 
+if (submitRequestBtn) {
+
+    submitRequestBtn.addEventListener("click", function () {
+
+        if (!selectedColor) return;
+
+        submitRequestBtn.disabled = true;
+
+        const confirmationScreen = document.createElement("div");
+
+        confirmationScreen.id = "confirmationScreen";
+
+        confirmationScreen.style.cssText = `
+            position: fixed;
+            inset: 0;
+            background: ${colorCodes[selectedColor]};
+            z-index: 2147483647;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: opacity .5s ease;
+        `;
+
+        confirmationScreen.innerHTML = `
+            <h1 style="color:${
+                ["سفید", "زرد", "طلایی", "صورتی"].includes(selectedColor)
+                ? "#222" : "#fff"
+            }">
+                گونی ${selectedColor} شما انتخاب شد!
+            </h1>
+        `;
+
+        document.body.appendChild(confirmationScreen);
+        document.body.style.overflow = "hidden";
+
+        setTimeout(() => {
+            confirmationScreen.style.opacity = "0";
+
+            setTimeout(() => {
+
+                confirmationScreen.remove();
+
+                document.getElementById("page2").style.display = "none";
+                document.getElementById("page3").style.display = "block";
+
+                document.body.style.overflow = "";
+                window.scrollTo(0, 0);
+
+                initializeGarage();
+
+            }, 500);
+
+        }, 2000);
+    });
+}
+
+
+// ========================================
+// صفحه سوم: GONYMAN GARAGE
+// ========================================
+
+let garageInitialized = false;
+
+let selectedCar = "car1";
+
+let selectedParts = new Set();
+
+let selectedStickers = [];
+
+
+const carNames = {
+    car1: "خودروی گشت شماره ۱",
+    car2: "خودروی گشت شماره ۲",
+    car3: "خودروی گشت شماره ۳",
+    car4: "خودروی گشت شماره ۴"
 };
 
 
+const parts = [
+    {
+        id: "wheel",
+        name: "رینگ",
+        image: "images/parts/wheel.png"
+    },
+    {
+        id: "spoiler",
+        name: "بال عقب",
+        image: "images/parts/spoiler.png"
+    },
+    {
+        id: "bumper",
+        name: "سپر",
+        image: "images/parts/bumper.png"
+    },
+    {
+        id: "light",
+        name: "چراغ",
+        image: "images/parts/light.png"
+    },
+    {
+        id: "hood",
+        name: "کاپوت",
+        image: "images/parts/hood.png"
+    }
+];
+
+
+const stickers = [
+    {
+        id: "allah",
+        name: "نشان الله",
+        image: "images/stickers/allah.png"
+    },
+    {
+        id: "sepah",
+        name: "نشان سپاه",
+        image: "images/stickers/sepah.png"
+    }
+];
+
+
 // ========================================
-// ثبت نهایی درخواست
+// راه اندازی گاراژ
 // ========================================
 
+function initializeGarage() {
 
-submitRequestBtn.addEventListener("click", function () {
+    if (garageInitialized) return;
 
-    if (!selectedColor) return;
+    garageInitialized = true;
 
-    submitRequestBtn.disabled = true;
+    const carCards = document.querySelectorAll(".car-card");
+    const mainCarImage = document.getElementById("mainCarImage");
 
-    const selectedHex = colorCodes[selectedColor];
+    const partsList = document.getElementById("partsList");
+    const stickersList = document.getElementById("stickersList");
 
-    const confirmationScreen = document.createElement("div");
+    const partsLayer = document.getElementById("carPartsLayer");
+    const stickersLayer = document.getElementById("carStickersLayer");
 
-    confirmationScreen.id = "confirmationScreen";
+    if (!mainCarImage || !partsList || !stickersList) {
+        console.error("Garage HTML elements are missing!");
+        garageInitialized = false;
+        return;
+    }
 
-    confirmationScreen.style.cssText = `
-        position: fixed;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        background-color: ${selectedHex};
-        z-index: 2147483647;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        box-sizing: border-box;
-        text-align: center;
-        opacity: 0;
-        transition: opacity 0.5s ease;
-    `;
 
-    const textColor =
-        ["سفید", "زرد", "طلایی", "صورتی"].includes(selectedColor)
-        ? "#222222"
-        : "#ffffff";
+    // انتخاب خودرو
 
-    confirmationScreen.style.color = textColor;
+    carCards.forEach(card => {
 
-    confirmationScreen.innerHTML = `
-        <h1 style="
-            font-size: clamp(25px, 5vw, 42px);
-            text-align: center;
-        ">
-            گونی ${selectedColor} شما انتخاب شد!
-        </h1>
-    `;
+        card.addEventListener("click", function () {
 
-    document.body.appendChild(confirmationScreen);
+            carCards.forEach(item =>
+                item.classList.remove("selected")
+            );
 
-    document.body.style.overflow = "hidden";
+            this.classList.add("selected");
 
-    requestAnimationFrame(() => {
-        confirmationScreen.style.opacity = "1";
+            selectedCar = this.dataset.car;
+
+            mainCarImage.src =
+                `images/cars/${selectedCar}.jpg`;
+
+            selectedParts.clear();
+            partsLayer.innerHTML = "";
+
+            selectedStickers = [];
+            stickersLayer.innerHTML = "";
+
+            document.querySelectorAll(".part-card")
+                .forEach(item => item.classList.remove("selected"));
+
+            renderStickers();
+        });
     });
 
-    setTimeout(() => {
 
-        confirmationScreen.style.opacity = "0";
+    // ساخت کارت های تجهیزات
 
-        setTimeout(() => {
+    partsList.innerHTML = "";
 
-            confirmationScreen.remove();
+    parts.forEach(part => {
 
-            document.getElementById("page2").style.display = "none";
-            document.getElementById("page3").style.display = "block";
+        const card = document.createElement("div");
 
-            document.getElementById("finalColorMessage").textContent =
-            document.getElementById("finalColorMessage").textContent = "";
+        card.className = "part-card";
+        card.dataset.part = part.id;
 
-            document.body.style.overflow = "";
+        card.innerHTML = `
+            <img src="${part.image}" alt="${part.name}">
+            <p>${part.name}</p>
+        `;
 
-            window.scrollTo(0, 0);
+        card.addEventListener("click", function () {
 
-        }, 500);
+            if (selectedParts.has(part.id)) {
 
-    }, 2000);
+                selectedParts.delete(part.id);
+                card.classList.remove("selected");
 
-});
+            } else {
+
+                selectedParts.add(part.id);
+                card.classList.add("selected");
+            }
+
+            renderParts();
+        });
+
+        partsList.appendChild(card);
+    });
+
+
+    // ساخت گالری استیکرها
+
+    function renderStickers() {
+
+        stickersList.innerHTML = "";
+
+        stickers.forEach(sticker => {
+
+            const card = document.createElement("div");
+
+            card.className = "sticker-card";
+
+            card.innerHTML = `
+                <img src="${sticker.image}" alt="${sticker.name}">
+                <p>${sticker.name}</p>
+                <button type="button">افزودن</button>
+            `;
+
+            card.querySelector("button").addEventListener("click", () => {
+                addSticker(sticker);
+            });
+
+            stickersList.appendChild(card);
+        });
+    }
+
+
+    // نمایش تجهیزات انتخاب شده
+
+    function renderParts() {
+
+        partsLayer.innerHTML = "";
+
+        selectedParts.forEach(partId => {
+
+            const part = parts.find(p => p.id === partId);
+
+            if (!part) return;
+
+            const img = document.createElement("img");
+
+            img.src = part.image;
+            img.alt = part.name;
+            img.className = "installed-part";
+            img.dataset.part = partId;
+
+            partsLayer.appendChild(img);
+        });
+    }
+
+
+    // افزودن استیکر
+
+    function addSticker(sticker) {
+
+        const id = Date.now() + Math.random();
+
+        selectedStickers.push({
+            id,
+            image: sticker.image,
+            name: sticker.name
+        });
+
+        renderStickerLayer();
+    }
+
+
+    // نمایش استیکرها
+
+    function renderStickerLayer() {
+
+        stickersLayer.innerHTML = "";
+
+        selectedStickers.forEach(sticker => {
+
+            const img = document.createElement("img");
+
+            img.src = sticker.image;
+            img.alt = sticker.name;
+            img.className = "installed-sticker";
+
+            img.style.left = "45%";
+            img.style.top = "45%";
+
+            img.addEventListener("pointerdown", startStickerDrag);
+
+            stickersLayer.appendChild(img);
+        });
+    }
+
+
+    // جابه جایی استیکر با ماوس یا لمس
+
+    let draggingSticker = null;
+
+    function startStickerDrag(event) {
+
+        draggingSticker = event.currentTarget;
+
+        const layerRect = stickersLayer.getBoundingClientRect();
+
+        const moveSticker = e => {
+
+            if (!draggingSticker) return;
+
+            const x = ((e.clientX - layerRect.left) / layerRect.width) * 100;
+            const y = ((e.clientY - layerRect.top) / layerRect.height) * 100;
+
+            draggingSticker.style.left =
+                Math.max(0, Math.min(95, x)) + "%";
+
+            draggingSticker.style.top =
+                Math.max(0, Math.min(90, y)) + "%";
+        };
+
+        const stopDrag = () => {
+
+            draggingSticker = null;
+
+            document.removeEventListener("pointermove", moveSticker);
+            document.removeEventListener("pointerup", stopDrag);
+        };
+
+        document.addEventListener("pointermove", moveSticker);
+        document.addEventListener("pointerup", stopDrag);
+
+        event.preventDefault();
+    }
+
+
+    // بازنشانی
+
+    const resetBtn = document.getElementById("resetTuningBtn");
+
+    if (resetBtn) {
+
+        resetBtn.addEventListener("click", () => {
+
+            selectedParts.clear();
+            selectedStickers = [];
+
+            partsLayer.innerHTML = "";
+            stickersLayer.innerHTML = "";
+
+            document.querySelectorAll(".part-card")
+                .forEach(item => item.classList.remove("selected"));
+
+            renderStickers();
+        });
+    }
+
+
+    // ذخیره طرح
+
+    const saveBtn = document.getElementById("saveTuningBtn");
+
+    if (saveBtn) {
+
+        saveBtn.addEventListener("click", () => {
+
+            const message = document.getElementById("tuningMessage");
+
+            message.textContent =
+                "طرح شما آماده است! برای ذخیره تصویر، از قابلیت اسکرین‌شات استفاده کنید.";
+
+        });
+    }
+
+
+    // شروع گاراژ
+
+    renderStickers();
+
+    const firstCar = document.querySelector('.car-card[data-car="car1"]');
+
+    if (firstCar) {
+        firstCar.classList.add("selected");
+    }
+
+    console.log("GonyMan Garage initialized!");
+}

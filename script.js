@@ -337,6 +337,14 @@ submitRequestBtn.addEventListener("click", function () {
     document.head.appendChild(animationStyle);
 
     document.body.appendChild(confirmationScreen);
+    screen.style.zIndex = "2147483647";
+screen.style.position = "fixed";
+screen.style.inset = "0";
+screen.style.display = "flex";
+
+screen.style.visibility = "visible";
+screen.style.opacity = "1";
+screen.style.pointerEvents = "auto";
 
     // نمایش صفحه تمام صفحه
 
